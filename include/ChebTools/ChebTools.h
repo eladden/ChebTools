@@ -62,15 +62,17 @@ namespace ChebTools{
         }
 
     public:
+        ///Initializer with nothing
+        ChebyshevExpansion() {resize();}
         /// Initializer with coefficients, and optionally a range provided
-        ChebyshevExpansion(const vectype &c, double xmin = -1, double xmax = 1) : m_c(c), m_xmin(xmin), m_xmax(xmax) { resize(); };
+        ChebyshevExpansion(const vectype &c, double xmin = -1, double xmax = 1) : m_c(c), m_xmin(xmin), m_xmax(xmax) { resize(); }
         /// Initializer with coefficients, and optionally a range provided
         ChebyshevExpansion(const std::vector<double> &c, double xmin = -1, double xmax = 1) : m_xmin(xmin), m_xmax(xmax) {
             m_c = Eigen::Map<const Eigen::VectorXd>(&(c[0]), c.size());
             resize();
         };
         /// Move constructor (C++11 only)
-        ChebyshevExpansion(const vectype &&c, double xmin = -1, double xmax = 1) : m_c(c), m_xmin(xmin), m_xmax(xmax) { resize(); };
+        ChebyshevExpansion(const vectype &&c, double xmin = -1, double xmax = 1) : m_c(c), m_xmin(xmin), m_xmax(xmax) { resize(); }
         /// Get the minimum value of \f$x\f$ for the expansion
         double xmin(){ return m_xmin; }
         /// Get the maximum value of \f$x\f$ for the expansion
@@ -314,5 +316,5 @@ namespace ChebTools{
         }
     };
 
-}; /* namespace ChebTools */
+} /* namespace ChebTools */
 #endif
